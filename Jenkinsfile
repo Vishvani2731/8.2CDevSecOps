@@ -45,6 +45,16 @@ pipeline {
                 '''
             }
         }
+        stage('Email Notification') {
+            steps {
+                emailext(
+                    subject: "Build ${env.JOB_NAME} #${env.BUILD_NUMBER} Result: ${currentBuild.currentResult}",
+                    body: "The build has completed.\n\nCheck the attached log for details.",
+                    to: 'your_email@example.com',
+                    attachLog: true
+                )
+            }
+        }
     }
 }
 
