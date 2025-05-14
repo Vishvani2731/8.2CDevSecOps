@@ -37,11 +37,11 @@ pipeline {
 
                 echo "Running SonarScanner..."
                 sonar-scanner \
-                  -Dsonar.projectKey=Vishvani2731 \
+                  -Dsonar.projectKey=Vishvani2731_8.2CDevSecOps \
                   -Dsonar.organization=vishvani2731 \
                   -Dsonar.sources=. \
                   -Dsonar.host.url=https://sonarcloud.io \
-                  -Dsonar.login=$SONAR_TOKEN
+                  -Dsonar.login=$da78cd99d2d64c0c16a9677165bc0b54d16dc916
                 '''
             }
         }
