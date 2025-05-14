@@ -45,16 +45,6 @@ pipeline {
                 '''
             }
         }
-        stage('Email Notification') {
-            steps {
-                emailext(
-                    subject: "Build ${env.JOB_NAME} #${env.BUILD_NUMBER} Result: ${currentBuild.currentResult}",
-                    body: "The build has completed.\n\nCheck the attached log for details.",
-                    to: 's224355322@deakin.edu.au',
-                    attachLog: true
-                )
-            }
-        }
     }
 }
 
