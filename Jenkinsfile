@@ -27,5 +27,23 @@ pipeline {
  bat 'npm audit || exit /b 0' // This will show known CVEs in the output
  }
  }
+  stage('SonarCloud Analysis') {
+            steps {
+                sh '''
+                echo "Downloading SonarScanner..."
+                curl -sSLo sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip
+                unzip -q sonar-scanner.zip
+                export PATH=$PWD/sonar-scanner-5.0.1.3006-linux/bin:$PATH
+
+                echo "Running SonarScanner..."
+                sonar-scanner \
+                  -Dsonar.projectKey=your_project_key \
+                  -Dsonar.organization=your_organization \
+                  -Dsonar.sources=. \
+                  -Dsonar.host.url=https://sonarcloud.io \
+                  -Dsonar.login=$SONAR_TOKEN
+                '''
+            }
+        }
  }
 }
