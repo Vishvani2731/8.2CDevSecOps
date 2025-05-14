@@ -27,22 +27,22 @@ pipeline {
  bat 'npm audit || exit /b 0' // This will show known CVEs in the output
  }
  }
-  stage('SonarCloud Analysis') {
-            steps {
-                bat '''
-                echo "Downloading SonarScanner..."
-                curl -sSLo sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip
-                unzip -q sonar-scanner.zip
-                export PATH=$PWD/sonar-scanner-5.0.1.3006-linux/bin:$PATH
+ stage('SonarCloud Analysis') {
+  steps {
+    bat """
+      echo Downloading SonarScanner for Windows...
+      powershell -Command "Invoke-WebRequest -Uri https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-windows.zip -OutFile sonar-scanner.zip"
 
-                echo "Running SonarScanner..."
-                sonar-scanner \
-                  -Dsonar.projectKey=Vishvani2731_8.2CDevSecOps \
-                  -Dsonar.organization=vishvani2731 \
-                  -Dsonar.sources=. \
-                  -Dsonar.host.url=https://sonarcloud.io \
-                  -Dsonar.login=$da78cd99d2d64c0c16a9677165bc0b54d16dc916
-                '''
+      echo Extracting...
+      powershell -Command "Expand-Archive sonar-scanner.zip -DestinationPath . -Force"
+
+      echo Running SonarScanner...
+      sonar-scanner-5.0.1.3006-windows\\bin\\sonar-scanner.bat \
+        -Dsonar.projectKey=Vishvani2731_8.2CDevSecOps \
+        -Dsonar.organization=vishvani2731 \
+        -Dsonar.sources=. \
+        -Dsonar.host.url=https://sonarcloud.io \
+        -Dsonar.login=$da78cd99d2d64c0c16a9677165bc0b54d16dc916'''
             }
         }
  }
