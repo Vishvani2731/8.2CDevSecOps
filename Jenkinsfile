@@ -1,4 +1,4 @@
-pipeline {
+hopipeline {
  agent any
  stages {
  stage('Checkout') {
