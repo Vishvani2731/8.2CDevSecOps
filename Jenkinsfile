@@ -38,7 +38,7 @@ pipeline {
                     echo Running SonarScanner...
                     sonar-scanner-5.0.1.3006-windows\\bin\\sonar-scanner.bat ^
                         -Dsonar.projectKey=Vishvani2731_8.2CDevSecOps ^
-                        -Dsonar.organization=Vishvani2731 ^
+                        -Dsonar.organization=vishvani2731 ^
                         -Dsonar.sources=. ^
                         -Dsonar.host.url=https://sonarcloud.io ^
                         -Dsonar.login=da78cd99d2d64c0c16a9677165bc0b54d16dc916 || exit /b 0
