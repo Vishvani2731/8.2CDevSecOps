@@ -29,7 +29,7 @@ pipeline {
  }
  stage('SonarCloud Analysis') {
   steps {
-    bat """
+    bat '''
       echo Downloading SonarScanner for Windows...
       powershell -Command "Invoke-WebRequest -Uri https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-windows.zip -OutFile sonar-scanner.zip"
 
